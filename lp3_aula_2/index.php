@@ -9,7 +9,7 @@
     <h1>LP3 Aula 2</h1>
 
     <?php
-    $xuxu = 5;
+    $xuxu = 6;
     echo $xuxu;
     ?>
 
@@ -25,9 +25,9 @@
 
 
 
-        <?php if($xuxu % 2 == 0){ ?>
+        <?php if($xuxu % 2 == 0) { ?>
 
-            <li>A variavel xuxu é impar</li>
+            <li>A variavel xuxu é par</li>
             
         <?php } else { ?>
 
