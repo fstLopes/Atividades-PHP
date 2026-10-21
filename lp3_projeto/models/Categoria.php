@@ -4,8 +4,8 @@ require_once __DIR__ . '/../config/Database.php';
 
 class Categoria
 {
+
     private $db;
-    private $tabela = "categorias";
 
     public function __construct()
     {
@@ -14,46 +14,64 @@ class Categoria
 
     public function listar()
     {
-        $stmt = $this->db->query("select * from $this->tabela order by id desc");
-        return $stmt->fetchAll();
+
+        $stnt = $this->db->query("select * from categorias order by id desc");
+
+        return $stnt->fetchALL();
     }
 
     public function salvar(string $categoria, string $descricao)
-    {
-        $sql = "insert into $this->tabela (categoria, descricao) values (:categoria, :descricao)";
-        $stmt = $this->db->prepare($sql);
-        $values = [
-            "categoria" => $categoria,
-            "descricao" => $descricao
-        ];
-        return $stmt->execute($values);
-    }
+        {
 
-    public function editar(int $id, string $categoria, string $descricao)
-    {
-        $sql = "update $this->tabela set categoria=:categoria, descricao=:descricao where id=:id";
-        $stmt = $this->db->prepare($sql);
-        $values = [
-            "categoria" => $categoria,
-            "descricao" => $descricao,
-            "id" => $id,
-        ];
-        return $stmt->execute($values);
-    }
+            $sql = "insert into categorias (categoria, descricao) values (:categoria, :descricao)";
+            $stnt = $this->db->prepare($sql);
+            $values = [
 
-    public function buscarPorId(int $id)
-    {
-        $sql = "select * from $this->tabela where id = :id";
-        $stmt = $this->db->prepare($sql);
-        $values = ["id" => $id];
-        $stmt->execute($values);
-        return $stmt->fetch();
-    }
+                "categoria" => $categoria,
+                "descricao" => $descricao
 
-    public function excluir(int $id){
-        $sql = "delete from $this->tabela where id = :id";
-        $stmt = $this->db->prepare($sql);
-        $values = ["id" => $id];
-        return $stmt->execute($values);
-    }
+            ];
+
+            return $stnt->execute($values);
+        }
+
+        public function atualizar(string $categoria, string $descricao, int $id)
+        {
+
+            $sql = "UPDATE categorias SET categoria = :categoria, descricao = :descricao WHERE id = :id";
+            $stnt = $this->db->prepare($sql);
+            $values = [
+
+                "categoria" => $categoria,
+                "descricao" => $descricao,
+                "id" => $id
+
+            ];
+
+            return $stnt->execute($values);
+        }
+
+        public function buscarPorId(int $id)
+        {
+
+            $sql = "SELECT * FROM categorias WHERE id = :id";
+            $stnt = $this->db->prepare($sql);
+
+            $values = ["id" => $id];
+
+            $stnt->execute($values);
+            return $stnt->fetch();
+        }
+
+        public function excluir(int $id)
+        {
+
+            $sql = "DELETE FROM categorias WHERE id = :id";
+            $stnt = $this->db->prepare($sql);
+
+            $values = ["id" => $id];
+
+            return $stnt->execute($values);
+        }
+    
 }

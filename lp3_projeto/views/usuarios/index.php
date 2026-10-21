@@ -6,7 +6,7 @@
     <div class="content-panel">
         <div class="header-action">
             <h3>Usuários Cadastrados</h3>
-            <a href="/lp3_projeto/usuarios/adicionar" class="btn btn-dark btn-sm">+ Novo Usuário</a>
+            <a href="/lp3_projeto/usuarios/adicionar" class="btn btn-success btn-sm">+ Novo Usuário</a>
         </div>
 
         <table class="table table-striped">
@@ -28,10 +28,10 @@
                             <td class="text-center">
                                 <a href="/lp3_projeto/usuarios/editar?id=<?= $user['id'] ?>" class="btn btn-warning btn-sm">Editar</a>
 
-                                <a href="/lp3_projeto/usuarios/excluir?id=<?= $user['id'] ?>"
-                                    class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Tem certeza que deseja excluir este usuário?');">
-                                    Excluir
+                                <a href="/lp3_projeto/usuarios/excluir?id=<?= $user['id'] ?>" 
+                                   class="btn btn-danger btn-sm" 
+                                   onclick="return confirm('Tem certeza que deseja excluir este usuário?');">
+                                   Excluir
                                 </a>
                             </td>
                         </tr>
