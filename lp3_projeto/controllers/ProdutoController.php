@@ -4,10 +4,12 @@ class ProdutoController
 {
 
     private $model;
+    private $categoriaModel;
 
     public function __construct()
     {
         $this->model = new Produto();
+        $this->categoriaModel = new Categoria();
     }
 
     public function index()
@@ -24,17 +26,18 @@ class ProdutoController
 
             $produto = filter_input(INPUT_POST, 'produto', FILTER_SANITIZE_SPECIAL_CHARS);
             $valor = filter_input(INPUT_POST, 'valor', FILTER_VALIDATE_FLOAT);
+            $categoria_id = filter_input(INPUT_POST, 'categoria_id', FILTER_VALIDATE_INT);
             $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
 
             if ($produto && $valor && $descricao) {
 
-                $this->model->salvar($produto, $valor, $descricao);
+                $this->model->salvar($produto, $valor, $categoria_id, $descricao);
 
                 header('Location: /lp3_projeto/produtos');
                 exit;
             }
         }
-
+        $categorias = $this->categoriaModel->listar();
         require_once __DIR__ . '/../views/produtos/criar.php';
     }
 
@@ -53,11 +56,12 @@ class ProdutoController
 
             $produto = filter_input(INPUT_POST, 'produto', FILTER_SANITIZE_SPECIAL_CHARS);
             $valor = filter_input(INPUT_POST, 'valor', FILTER_VALIDATE_FLOAT);
+            $categoria_id = filter_input(INPUT_POST, 'categoria_id', FILTER_VALIDATE_INT);
             $descricao = filter_input(INPUT_POST, 'descricao', FILTER_SANITIZE_SPECIAL_CHARS);
 
             if ($produto && $valor && $descricao) {
 
-                $this->model->atualizar($produto, $valor, $descricao, $id);
+                $this->model->atualizar($produto, $valor, $categoria_id, $descricao, $id);
 
                 header('Location: /lp3_projeto/produtos');
                 exit;
@@ -71,6 +75,7 @@ class ProdutoController
             exit;
         }
 
+        $categorias = $this->categoriaModel->listar();
         require_once __DIR__ . '/../views/produtos/editar.php';
     }
 

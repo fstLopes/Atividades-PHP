@@ -15,6 +15,7 @@
                     <th>ID</th>
                     <th>Nome do Produto</th>
                     <th>Valor</th>
+                    <th>Categoria</th>
                     <th>Descrição</th>
                     <th class="text-center">Ações</th>
                 </tr>
@@ -26,6 +27,7 @@
                             <td><?= $produto['id'] ?></td>
                             <td><?= htmlspecialchars($produto['produto']) ?></td>
                             <td><?= htmlspecialchars($produto['valor']) ?></td>
+                            <td><?= htmlspecialchars($produto['categoria_id']) ?></td>
                             <td><?= htmlspecialchars($produto['descricao']) ?></td>
                             <td class="text-center">
                                 <a href="/lp3_projeto/produtos/editar?id=<?= $produto['id'] ?>" class="btn btn-warning btn-sm">Editar</a>

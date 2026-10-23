@@ -42,7 +42,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="4" style="text-align: center;">Nenhum filme cadastrado.</td>
+                        <td colspan="6" style="text-align: center;">Nenhum filme cadastrado.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
